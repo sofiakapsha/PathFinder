@@ -12,7 +12,6 @@ public class AStarUnweighted: IPathFinder
 
         int counter = 0;
         queue.Enqueue(start, 0);
-        counter++;
         costSoFar[start] = 0;
         pointNext[start] = start;
 
