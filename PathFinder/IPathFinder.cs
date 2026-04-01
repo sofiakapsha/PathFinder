@@ -13,5 +13,9 @@ public interface IPathFinder
     /// <returns>List of points represents the path and the count of visited nodes</returns>
     public (List<Point>, int) FindPath(string[,] map, Point start, Point destination);
     
-    
+}
+
+public interface IPathFinderForWeighted
+{
+    public (List<Point>, double) FindPath(string[,] map, Point start, Point destination);
 }
