@@ -50,7 +50,17 @@ public class AStarWeighted: IPathFinderForWeighted
             visited.Add(currentPoint);
             counter++;
 
-            if (counter % 10 == 0) new MapPrinter().PrintForAStarWeighted(map, visited, currentPoint, start, destination);
+            if (counter % 10 == 0)
+            {
+                try
+                {
+                    new MapPrinter().PrintForAStarWeighted(map, visited, currentPoint, start, destination);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error");
+                }
+            }
         }
         
         throw new Exception("No path found");
