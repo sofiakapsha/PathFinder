@@ -10,17 +10,20 @@ public class DjikstraUnweighted: IPathFinder
         var pointWeight = new Dictionary<Point, int>();
         var pointNext = new Dictionary<Point, Point>();
         
+        int counter = 0;
         queue.Enqueue(start, 0);
+        counter++;
         pointWeight[start] = 0;
         pointNext[start] = start;
 
         while (queue.Count > 0)
         {
             var currentPoint = queue.Dequeue().Item1;
+            counter++;
             
             if (currentPoint.Equals(destination))
             {
-                return (CheckPath(start, destination, pointNext), pointWeight[destination]);
+                return (CheckPath(start, destination, pointNext), counter);
             }
 
             var neighbors = MapGenerator.GetNeighbours(currentPoint.Column, currentPoint.Row, map, 1, true);

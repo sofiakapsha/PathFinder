@@ -1,10 +1,10 @@
+using PathFinder;
 using PathFinder.MapGeneration;
 
-// Буквально неймспейс з "затичками", щоб ваш код копілювався.
-// Видаліть це і замініть на власний, де знаходяться реалізації алгоритмів
 using Plugs;
 
 using Point = PathFinder.MapGeneration.Point;
+using BreadthFirstSearch = PathFinder.BreadthFirstSearch;
 
 namespace PathFinderTests;
 
@@ -33,7 +33,6 @@ public class PathFinderTests
     [Category("WithoutTraffic")]
     public void TestBreadthFirstSearch()
     {
-        // Replace this with your actual implementation of BFS
         var bfs = new BreadthFirstSearch();
         var (shortestPath, nodesVisited) = bfs.FindPath(_map!, _start, _destination);
 
@@ -47,8 +46,7 @@ public class PathFinderTests
     [Category("WithoutTraffic")]
     public void TestDijkstraUnweighted()
     {
-        // Replace this with your actual implementation of Dijkstra
-        var dijkstra = new Dijkstra();
+        var dijkstra = new DjikstraUnweighted();
         var (shortestPath, nodesVisited) = dijkstra.FindPath(_map!, _start, _destination);
 
         var expectedPath = Paths.DijkstraPathUnweighted;
@@ -61,8 +59,7 @@ public class PathFinderTests
     [Category("WithoutTraffic")]
     public void TestAStarUnweighted()
     {
-        // Replace this with your actual implementation of AStar
-        var aStar = new AStar();
+        var aStar = new AStarUnweighted();
         var (shortestPath, nodesVisited) = aStar.FindPath(_map!, _start, _destination);
 
         var expectedPath = Paths.AStarPathUnweighted;

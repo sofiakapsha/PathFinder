@@ -9,16 +9,20 @@ public class AStarUnweighted: IPathFinder
         var queue = new PriorityQueue();
         var costSoFar = new Dictionary<Point, int>();
         var pointNext = new Dictionary<Point, Point>();
-        
+
+        int counter = 0;
         queue.Enqueue(start, 0);
+        counter++;
         costSoFar[start] = 0;
         pointNext[start] = start;
 
         while (queue.Count > 0 && queue.TryDequeue( out var currentPoint, out var priority))
         {
+            counter++;
+            
             if (currentPoint.Equals(destination))
             {
-                return (CheckPath(start, destination, pointNext), costSoFar[destination]);
+                return (CheckPath(start, destination, pointNext), counter);
             }
 
             var neighbors = MapGenerator.GetNeighbours(currentPoint.Column, currentPoint.Row, map, 1, true);
