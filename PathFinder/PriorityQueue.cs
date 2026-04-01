@@ -2,11 +2,11 @@
 
 public class PriorityQueue
 {
-    private List<(Point, int)> _points = new List<(Point, int)>();
+    private List<(Point, double)> _points = new List<(Point, double)>();
 
     public int Count => _points.Count;
 
-    public bool TryDequeue(out Point point, out int priority)
+    public bool TryDequeue(out Point point, out double priority)
     {
         point = default;
         priority = default;
@@ -18,7 +18,7 @@ public class PriorityQueue
         return true;
     }
 
-    public void Enqueue(Point point, int priority)
+    public void Enqueue(Point point, double priority)
     {
         _points.Add((point, priority));
 
@@ -35,7 +35,7 @@ public class PriorityQueue
        
     }
 
-    public (Point, int) Dequeue()
+    public (Point, double) Dequeue()
     {
         var head = _points[0];
 
