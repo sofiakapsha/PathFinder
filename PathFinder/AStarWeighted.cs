@@ -23,7 +23,7 @@ public class AStarWeighted: IPathFinderForWeighted
                 return (CheckPath(start, destination, pointNext), costSoFar[destination]);
             }
 
-            var neighbors = MapGenerator.GetNeighbours(currentPoint.Column, currentPoint.Row, map, 1, true);
+            var neighbors = MapGenerator.GetNeighboursWithDiagonals(currentPoint.Column, currentPoint.Row, map, 1, true);
             
             foreach (var point in neighbors)
             {
@@ -35,8 +35,11 @@ public class AStarWeighted: IPathFinderForWeighted
                 {
                     costSoFar[point] = newWeight;
 
+                    double y = destination.Column - point.Column;
+                    double x = destination.Row - point.Row;
+
                     double minTimeForOneCell = 1.0 / 60.0;
-                    int distToFinih = Math.Abs(destination.Column - point.Column) + Math.Abs(destination.Row - point.Row);
+                    double distToFinih = Math.Sqrt(x * x + y * y) / Math.Sqrt(2);
                     var heuristic = distToFinih * minTimeForOneCell;
                     
                     double newCost = heuristic + newWeight;

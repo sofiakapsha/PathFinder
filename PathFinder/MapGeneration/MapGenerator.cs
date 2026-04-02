@@ -172,4 +172,32 @@ public class MapGenerator
             }
         }
     }
+    
+    public static List<Point> GetNeighboursWithDiagonals(int column, int row, string[,] maze, int offset = 2,
+        bool checkWalls = false)
+    {
+        var result = new List<Point>();
+        TryAddWithOffset(offset, 0);
+        TryAddWithOffset(-offset, 0);
+        TryAddWithOffset(0, offset);
+        TryAddWithOffset(0, -offset);
+        TryAddWithOffset(offset, offset);
+        TryAddWithOffset(offset, -offset);
+        TryAddWithOffset(-offset, -offset);
+        TryAddWithOffset(-offset, offset);
+        return result;
+
+        void TryAddWithOffset(int offsetX, int offsetY)
+        {
+            var newColumn = column + offsetX;
+            var newRow = row + offsetY;
+            if (newColumn >= 0 && newRow >= 0 && newColumn < maze.GetLength(0) && newRow < maze.GetLength(1))
+            {
+                if (!checkWalls || maze[newColumn, newRow] == Space || int.TryParse(maze[newColumn, newRow], out _))
+                {
+                    result.Add(new Point(newColumn, newRow));
+                }
+            }
+        }
+    }
 }
